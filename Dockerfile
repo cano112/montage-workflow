@@ -24,3 +24,15 @@ RUN npm install -g log4js
 COPY software/libnethogs.so.0.8.5-63-g68033bf /usr/local/lib
 COPY software/nethogs-wrapper.py /usr/local/bin 
 RUN chmod +x /usr/local/bin/nethogs-wrapper.py
+
+# ADD FILE BLOCK ACCESS MONITORING LIBRARY (FBAM)
+WORKDIR /
+RUN apk --no-cache add cmake clang clang-dev make gcc g++ libc-dev linux-headers
+ENV FBAM_VERSION=0.4.1
+RUN wget https://github.com/cano112/fbam/archive/${FBAM_VERSION}.tar.gz
+RUN tar zxvf ${FBAM_VERSION}.tar.gz 
+WORKDIR fbam-${FBAM_VERSION}
+RUN chmod +x ./build.sh
+RUN ./build.sh
+RUN mkdir /fbam
+RUN cp -r ./build/libblockaccess.so.${FBAM_VERSION} /fbam/libfbam.so
