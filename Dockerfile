@@ -28,7 +28,7 @@ RUN chmod +x /usr/local/bin/nethogs-wrapper.py
 # ADD FILE BLOCK ACCESS MONITORING LIBRARY (FBAM)
 WORKDIR /
 RUN apk --no-cache add cmake clang clang-dev make gcc g++ libc-dev linux-headers
-ENV FBAM_VERSION=0.4.1
+ENV FBAM_VERSION=0.5.0
 RUN wget https://github.com/cano112/fbam/archive/${FBAM_VERSION}.tar.gz
 RUN tar zxvf ${FBAM_VERSION}.tar.gz 
 WORKDIR fbam-${FBAM_VERSION}
