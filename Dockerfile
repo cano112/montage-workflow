@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:12
+FROM frolvlad/alpine-glibc:alpine-3.12
 MAINTAINER Bartosz Balis <balis@agh.edu.pl>
 
 # Version of the job executor should be passed via docker build, e.g.: 
@@ -7,7 +7,7 @@ ARG hf_job_executor_version
 ENV HYPERFLOW_JOB_EXECUTOR_VERSION=$hf_job_executor_version
 
 # RUN apk add --no-cache make gcc g++ libnsl libnsl-dev
-RUN apk add python3 libpcap libpcap-dev util-linux
+RUN apk add python3 libpcap libpcap-dev util-linux nodejs npm
 
 #ADD http://pegasus.isi.edu/montage/Montage_v3.3_patched_4.tar.gz /
 #RUN tar zxvf Montage_v3.3_patched_4.tar.gz && \
